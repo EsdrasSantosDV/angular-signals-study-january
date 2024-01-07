@@ -9,11 +9,19 @@
       <div class="bg-primary-primary p-6 max-w-xl mx-auto rounded-lg shadow-lg">
         <div class="bg-white p-4 rounded mb-6">
           <div class="flex flex-col text-right text-black text-3xl pr-2">
-            <div>
-              {{
-              vm().expression
-              }}
-            </div>
+            @if(vm().isValidation)
+            {
+              <div>
+                {{
+                  vm().expression
+                }}
+              </div>
+            }
+            @else {
+              <div>
+                Setença Invalida
+              </div>
+            }
           </div>
         </div>
         <div class="grid grid-cols-4 gap-4">
