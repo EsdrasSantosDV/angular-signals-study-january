@@ -9,18 +9,39 @@
       <div class="bg-primary-primary p-6 max-w-xl mx-auto rounded-lg shadow-lg">
         <div class="bg-white p-4 rounded mb-6">
           <div class="flex flex-col text-right text-black text-3xl pr-2">
-            @if(vm().isValidation)
+            @if(vm().isCalculate)
             {
               <div>
                 {{
-                  vm().expression
+                  vm().lastExpression
+                }}
+              </div>
+              <div>
+                {{
+                  vm().result
                 }}
               </div>
             }
             @else {
-              <div>
-                Setença Invalida
-              </div>
+              @if (
+                vm().isValidation
+              ) {
+                <div>
+                  {{
+                    vm().lastExpression
+                  }}
+                </div>
+                <div>
+                  {{
+                    vm().expression
+                  }}
+                </div>
+              }
+              @else {
+                <div>
+                  Error
+                </div>
+              }
             }
           </div>
         </div>
