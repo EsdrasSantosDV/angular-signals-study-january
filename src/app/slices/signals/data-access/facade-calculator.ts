@@ -35,6 +35,8 @@ export class FacadeCalculator {
   expresionFinalizated$=toObservable(this.state).pipe(
     filter(state=>state.expression.length>0 && state.expression[state.expression.length-1]==='='),
     tap((state) => {
+      console.log('expresionFinalizated$', state);
+      
         const expression=state.expression.slice(0,state.expression.length-1);
         const result=this.#calculatorService.calculateExpression(expression);
         this.state.update(state=>({...state,
@@ -50,7 +52,7 @@ export class FacadeCalculator {
 
   expressionClean$=toObservable(this.state).pipe(
     filter(state=>state.expression.length>0 && state.expression[state.expression.length-1]==='C'),
-    tap(state=>this.state.update(state=>({...state,expression:''}))),
+    tap(state=>this.state.update(state=>({...state,expression:'',lastExpression:'',isValidation:true,isCalculate:false}))),
   );
 
 
