@@ -13,17 +13,17 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withComponentInputBinding()),
     provideHttpClient(),
     provideRouterStore({
-        stateKey: 'router',
-        routerState: RouterState.Full,
+      stateKey: 'router',
+      routerState: RouterState.Full,
     }),
     provideStore(),
     provideStoreDevtools({
-        maxAge: 25,
-        logOnly: !isDevMode(),
-        autoPause: true,
-        trace: true,
-        traceLimit: 75,
+      maxAge: 25,
+      logOnly: !isDevMode(),
+      autoPause: true,
+      trace: true,
+      traceLimit: 75,
     }),
-    provideAnimations()
-],
+    provideAnimations(),
+  ],
 };

@@ -1,41 +1,63 @@
-<ng-container>
-  <div class=" scale-100">
+@if (loadOptions$ | async) {
+  <div class="scale-100">
     <div class="w-full h-full p-6">
       <div>
-        <h1 class="text-3xl text-center text-black">Calculator using Signals</h1>
+        <h1 class="text-3xl text-center text-black">
+          Calculator using Signals
+        </h1>
       </div>
       <div class="bg-primary-primary p-6 max-w-xl mx-auto rounded-lg shadow-lg">
         <div class="bg-white p-4 rounded mb-6">
-          <div class=" flex flex-col text-right text-black text-3xl pr-2" >
-            6
+          <div class="flex flex-col text-right text-black text-3xl pr-2">
+            @if(vm().isCalculate)
+            {
+              <div>
+                {{
+                  vm().lastExpression
+                }}
+              </div>
+              <div>
+                {{
+                  vm().result
+                }}
+              </div>
+            }
+            @else {
+              @if (
+                vm().isValidation
+              ) {
+                <div>
+                  {{
+                    vm().lastExpression
+                  }}
+                </div>
+                <div>
+                  {{
+                    vm().expression
+                  }}
+                </div>
+              }
+              @else {
+                <div>
+                  Error
+                </div>
+              }
+            }
           </div>
         </div>
         <div class="grid grid-cols-4 gap-4">
-          <button mat-button>(</button>
-          <button mat-button>)</button>
-          <button mat-button>C</button>
-          <button class="bg-orange-500 text-white" mat-button>/</button>
-
-          <button mat-button>7</button>
-          <button mat-button>8</button>
-          <button mat-button>9</button>
-          <button class="bg-orange-500 text-white" mat-button>*</button>
-
-          <button mat-button>4</button>
-          <button mat-button>5</button>
-          <button mat-button>6</button>
-          <button class="bg-orange-500 text-white" mat-button>-</button>
-
-          <button mat-button>1</button>
-          <button mat-button>2</button>
-          <button mat-button>3</button>
-          <button class="bg-orange-500 text-white" mat-button>+</button>
-
-          <button class="col-span-2" mat-button>0</button>
-          <button mat-button>.</button>
-          <button class="bg-green-500 text-white" mat-button>=</button>
+          @for (
+            option of  vm().optionsCalculator;
+            track option.id
+          ) {
+            <button mat-button class="bg-primary-primary text-white" (click)="facadeCalculator.newActionCalculate(option)">
+              {{
+              option.visibleValue
+              }}
+            </button>
+          }
         </div>
       </div>
     </div>
   </div>
-</ng-container>
+}
